@@ -1,0 +1,19 @@
+
+config SUNXI_NVME
+	bool "support sunxi nvme devices"
+	depends on SUNXI_FLASH && NVME
+	default n
+	help
+	  enable support for sunxi nvme devices. these provide a block-level interface which permits
+	  reading, writing and (in some cases) erasing blocks.
+
+
+if SUNXI_NVME
+config NVME_LOGICAL_OFFSET
+	int "logic address for read/write"
+	default 40960
+	help
+	  logic address for mbr and partitions(1M-MBRSIZE = 2048-32).
+	  NVME address is offset*512 bytes.
+
+endif
